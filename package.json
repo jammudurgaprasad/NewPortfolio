@@ -42,15 +42,13 @@
       "last 1 safari version"
     ]
   },
-"overrides": {
-  "workbox-build": {
-    "ajv": "^8.17.1",
-    "ajv-keywords": "^5.1.0"
-  },
-  "@apideck/better-ajv-errors": {
-    "ajv": "^8.17.1"
+  "overrides": {
+    "workbox-build": {
+      "ajv": "^8.17.1",
+      "ajv-keywords": "^5.1.0"
+    },
+    "@apideck/better-ajv-errors": {
+      "ajv": "^8.17.1"
+    }
   }
-}
-
-
 }
