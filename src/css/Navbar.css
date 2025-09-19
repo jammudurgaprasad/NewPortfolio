@@ -1,0 +1,208 @@
+:root {
+  --primary-yellow: #ffc107;
+  --secondary-yellow: #fff3e0;
+  --text-dark: #37474f;
+  --text-light: #607d8b;
+  --bg-white: #f5f5f5;
+}
+
+/* Base Styles (can be in a separate global CSS file) */
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--bg-white);
+  color: var(--text-dark);
+  overflow-x: hidden;
+}
+
+/* Navbar styles */
+.hero-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 80px;
+  background-color: transparent;
+  position: fixed; /* Makes the navbar stick to the top */
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000; /* Ensures it stays on top of other content */
+  transition: all 0.4s ease-in-out;
+}
+
+.hero-header.scrolled {
+  background-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text-dark);
+  letter-spacing: 1px;
+  text-decoration: none;
+}
+nav {
+  margin-right: 150px;
+}
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+}
+
+nav a {
+  text-decoration: none;
+  color: var(--text-light);
+  font-weight: 500;
+  font-size: 16px;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  color: var(--primary-yellow);
+}
+
+.language-flags {
+  display: flex;
+  gap: 5px;
+  margin-left: 20px;
+}
+
+.language-flags img {
+  width: 24px;
+  height: auto;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+/* Hamburger menu styles - Mobile only */
+.menu-toggle {
+  display: none;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  z-index: 100;
+}
+
+.menu-bars {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.menu-bars span {
+  display: block;
+  height: 4px;
+  width: 26px;
+  background: var(--text-dark);
+  margin: 4px 0;
+  border-radius: 2px;
+  transition: 0.3s;
+}
+
+/* Mobile Nav Overlay */
+.mobile-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 75vw;
+  max-width: 320px;
+  background: var(--secondary-yellow);
+  box-shadow: 2px 0 16px rgba(0,0,0,0.09);
+  transform: translateX(-100%);
+  transition: transform 0.35s cubic-bezier(.39,.58,.57,1);
+  z-index: 999;
+  padding: 30px 15px 0 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+.mobile-nav.open {
+  transform: translateX(0);
+}
+
+.mobile-nav ul {
+  flex-direction: column;
+  gap: 18px;
+}
+
+.mobile-nav a {
+  font-size: 18px;
+  color: var(--text-dark);
+  font-weight: 500;
+}
+
+.mobile-nav .language-flags {
+  margin-left: 0;
+}
+
+/* Remove social-icons from mobile nav */
+.mobile-nav .social-icons {
+  display: none;
+}
+
+.mobile-nav-close {
+  position: absolute;
+  top: 20px;
+  right: 16px;
+  font-size: 32px;
+  color: var(--text-dark);
+  cursor: pointer;
+}
+
+/* Responsive styles for Navbar */
+@media (max-width: 950px) {
+  .hero-header {
+    padding: 20px 28px;
+  }
+}
+
+/* Mobile Styling */
+@media (max-width: 600px) {
+  .hero-header {
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 16px 16px;
+    width: 100%;
+    z-index: 1000;
+    background: var(--secondary-yellow);
+  }
+  
+  .hero-header.scrolled {
+    background-color: var(--secondary-yellow);
+    backdrop-filter: none;
+    border-bottom: none;
+  }
+
+  .logo {
+    margin-left: 11px;
+    font-size: 21px;
+  }
+
+  nav {
+    display: none;
+  }
+
+  .menu-toggle {
+    display: flex;
+    margin-left: 2px;
+  }
+}
+
+/* Remove focus outline for better look */
+.menu-toggle, .menu-bars, .icon-link {
+  outline: none;
+}

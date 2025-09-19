@@ -1,0 +1,82 @@
+:root {
+  --primary-yellow: #ffc107;
+  --secondary-yellow: #fff3e0;
+  --text-dark: #37474f;
+  --text-light: #607d8b;
+  --bg-white: #f5f5f5;
+}
+
+/* Mobile Nav Overlay */
+.mobile-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 75vw;
+  max-width: 320px;
+  background: var(--secondary-yellow);
+  box-shadow: 2px 0 16px rgba(0,0,0,0.09);
+  transform: translateX(-100%);
+  transition: transform 0.35s cubic-bezier(.39,.58,.57,1);
+  z-index: 999;
+  padding: 30px 15px 0 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+.mobile-nav.open {
+  transform: translateX(0);
+}
+
+.mobile-nav.closing {
+  /* This class is for the closing animation */
+  transform: translateX(-100%);
+}
+
+.mobile-nav ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin: 0;
+  padding: 0;
+}
+
+.mobile-nav a {
+  text-decoration: none;
+  font-size: 18px;
+  color: var(--text-dark);
+  font-weight: 500;
+}
+
+.mobile-nav a:hover {
+  color: var(--primary-yellow);
+}
+
+.mobile-nav .language-flags {
+  margin-left: 0;
+  margin-top: 18px; /* Add some spacing from the links */
+}
+
+.language-flags img {
+  width: 24px;
+  height: auto;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+/* Remove social-icons from mobile nav */
+.mobile-nav .social-icons {
+  display: none;
+}
+
+.mobile-nav-close {
+  position: absolute;
+  top: 20px;
+  right: 16px;
+  font-size: 32px;
+  color: var(--text-dark);
+  cursor: pointer;
+  z-index: 1000;
+}

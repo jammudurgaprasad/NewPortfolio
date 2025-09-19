@@ -1,0 +1,33 @@
+:root {
+  --primary-yellow: #ffc107;
+  --text-light: #607d8b;
+}
+
+.typed-text {
+  display: inline-block;
+  white-space: pre;
+}
+
+.cursor {
+  display: inline-block;
+  background-color: var(--text-light);
+  width: 2px;
+  height: 1.2em;
+  margin-left: 2px;
+  animation: blink-cursor 0.75s step-end infinite;
+}
+
+@keyframes blink-cursor {
+  from, to { opacity: 0 }
+  50% { opacity: 1 }
+}
+
+/* Responsive styles for the parent 'career-text' class, which contains the typed text */
+@media (max-width: 600px) {
+  .career-text {
+    font-size: 19px;
+    justify-content: center;
+    margin-bottom: 0px;
+    margin-top: 6px;
+  }
+}
