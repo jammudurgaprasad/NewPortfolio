@@ -179,6 +179,8 @@ nav a:hover {
     width: 100%;
     z-index: 1000;
     background: var(--secondary-yellow);
+    /* background-color: yellow; */
+
   }
   
   .hero-header.scrolled {
