@@ -1,84 +1,7 @@
-// import React, { useEffect } from "react";
-// import { DotLottieReact } from "@lottiefiles/dotlottie-react";
-// import "../css/Skills.css";
-// const Skills = () => {
-//   useEffect(() => {
-//     const observer = new IntersectionObserver(
-//       (entries) => {
-//         entries.forEach((entry) => {
-//           if (entry.isIntersecting) {
-//             entry.target.classList.add("is-visible");
-//           }
-//         });
-//       },
-//       { threshold: 0.2 }
-//     );
-
-//     const elements = document.querySelectorAll(".fade-in");
-//     elements.forEach((el) => observer.observe(el));
-
-//     return () => {
-//       elements.forEach((el) => observer.unobserve(el));
-//     };
-//   }, []);
-
-//   const skills = [
-//     "Java",
-//     "Python",
-//     "JavaScript",
-//     "React",
-//     "Spring",
-//     "Django",
-//     "Node.js",
-//     "SQL",
-//     "MongoDB",
-//     "Git",
-//     "AI",
-//     "ML",
-//   ];
-
-//   return (
-//     <div className="container" id="skills">
-//       <main className="skills-section">
-//         <h1 className="skills-title fade-in">My Skills</h1>
-
-//         <div className="lottie-container fade-in">
-//           <DotLottieReact
-//             src="https://lottie.host/526605ea-5188-4a04-b9a0-2f7ecb205050/vUO5dex0vF.lottie"
-//             loop
-//             autoplay
-//           />
-//         </div>
-//       </main>
-
-//       <div className="skills-marquee-container" aria-label="Scrolling skills">
-//         <div className="skills-marquee">
-//           {skills.concat(skills).map((skill, i) => (
-//             <div className="skill-item" key={i}>
-//               <div className="skill-icon">
-//                 <img
-//                   src={`https://via.placeholder.com/80?text=${skill}`}
-//                   alt={skill}
-//                 />
-//               </div>
-//               <p className="skill-name">{skill}</p>
-//             </div>
-//           ))}
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Skills;
-
-
-
 import React, { useEffect } from "react";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import "../css/Skills.css";
 
-// Import all icons
 import clanguageIcon from "../icons/clanguage.png";
 import pythonIcon from "../icons/python.png";
 import javaIcon from "../icons/java.png";
@@ -111,23 +34,29 @@ import intellijIcon from "../icons/intellijIdea.png";
 
 const Skills = () => {
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
-          }
-        });
-      },
-      { threshold: 0.2 }
+    const observerOptions = {
+      root: null,
+      rootMargin: "0px",
+      threshold: 0.15,
+    };
+
+    // Observe heading and lottie for scroll-triggered animation
+    const animatedElements = document.querySelectorAll(
+      ".skills-title, .lottie-container"
     );
 
-    const elements = document.querySelectorAll(".fade-in");
-    elements.forEach((el) => observer.observe(el));
+    const observer = new IntersectionObserver((entries, observerInstance) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observerInstance.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
 
-    return () => {
-      elements.forEach((el) => observer.unobserve(el));
-    };
+    animatedElements.forEach((el) => observer.observe(el));
+
+    return () => observer.disconnect();
   }, []);
 
   const skills = [
@@ -165,9 +94,9 @@ const Skills = () => {
   return (
     <div className="container" id="skills">
       <main className="skills-section">
-        <h1 className="skills-title fade-in">My Skills</h1>
+        <h1 className="skills-title">My Skills</h1>
 
-        <div className="lottie-container fade-in">
+        <div className="lottie-container">
           <DotLottieReact
             src="https://lottie.host/526605ea-5188-4a04-b9a0-2f7ecb205050/vUO5dex0vF.lottie"
             loop

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import "../css/Certifications.css";
 
-// Import certificate images
+// Certificate images
 import PythonCert from "../Certificates&Projects/Python.png";
 import NPTELCert from "../Certificates&Projects/NPTEL.jpeg";
 import JavaScriptCert from "../Certificates&Projects/JavaScript.jpeg";
@@ -12,10 +12,13 @@ const Certifications = () => {
     const observerOptions = {
       root: null,
       rootMargin: "0px",
-      threshold: 0.1,
+      threshold: 0.15,
     };
 
-    const animatedElements = document.querySelectorAll(".card-wrapper");
+    // Animate the title and each card
+    const animatedElements = document.querySelectorAll(
+      ".certifications-title, .card-wrapper"
+    );
 
     const observer = new IntersectionObserver((entries, observerInstance) => {
       entries.forEach((entry) => {
@@ -31,15 +34,22 @@ const Certifications = () => {
     return () => observer.disconnect();
   }, []);
 
+  // Touch support for flipping (for mobile)
+  const handleTouchStart = (e) => {
+    e.currentTarget.classList.toggle("hover");
+  };
+
   return (
     <div className="container" id="certifications">
       <main className="certifications-section">
         <h1 className="certifications-title">Certifications</h1>
-
         <div className="certificates-grid">
-
           {/* Python Certificate */}
-          <div className="card-wrapper" onTouchStart={(e) => e.currentTarget.classList.toggle("hover")}>
+          <div
+            className="card-wrapper"
+            onTouchStart={handleTouchStart}
+            tabIndex={0}
+          >
             <div className="card-flipper">
               <div className="card-front">
                 <img src={PythonCert} alt="Python Certificate" />
@@ -57,9 +67,12 @@ const Certifications = () => {
               </div>
             </div>
           </div>
-
           {/* NPTEL Certificate */}
-          <div className="card-wrapper" onTouchStart={(e) => e.currentTarget.classList.toggle("hover")}>
+          <div
+            className="card-wrapper"
+            onTouchStart={handleTouchStart}
+            tabIndex={0}
+          >
             <div className="card-flipper">
               <div className="card-front">
                 <img src={NPTELCert} alt="NPTEL DSA using Java Certificate" />
@@ -77,9 +90,12 @@ const Certifications = () => {
               </div>
             </div>
           </div>
-
           {/* JavaScript Certificate */}
-          <div className="card-wrapper" onTouchStart={(e) => e.currentTarget.classList.toggle("hover")}>
+          <div
+            className="card-wrapper"
+            onTouchStart={handleTouchStart}
+            tabIndex={0}
+          >
             <div className="card-flipper">
               <div className="card-front">
                 <img src={JavaScriptCert} alt="JavaScript Certificate" />
@@ -97,12 +113,18 @@ const Certifications = () => {
               </div>
             </div>
           </div>
-
           {/* Fullstack Certificate */}
-          <div className="card-wrapper" onTouchStart={(e) => e.currentTarget.classList.toggle("hover")}>
+          <div
+            className="card-wrapper"
+            onTouchStart={handleTouchStart}
+            tabIndex={0}
+          >
             <div className="card-flipper">
               <div className="card-front">
-                <img src={FullstackCert} alt="Full Stack Developer Bootcamp Certificate" />
+                <img
+                  src={FullstackCert}
+                  alt="Full Stack Developer Bootcamp Certificate"
+                />
               </div>
               <div className="card-back">
                 <h4>Platform: GeeksforGeeks</h4>
@@ -117,7 +139,6 @@ const Certifications = () => {
               </div>
             </div>
           </div>
-
         </div>
       </main>
     </div>

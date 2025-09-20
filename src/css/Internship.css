@@ -30,7 +30,7 @@ body {
   align-items: flex-start;
 }
 
-/* --- Title Animation --- */
+/* --- Title Animation (scroll-triggered) --- */
 .internship-title {
   font-size: 48px;
   font-weight: 700;
@@ -38,9 +38,14 @@ body {
   margin-bottom: 20px;
   position: relative;
   display: inline-block;
-  animation: slideInLeft 0.8s ease-out;
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
-
+.internship-title.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
 .internship-title::before {
   content: '';
   position: absolute;
@@ -51,7 +56,10 @@ body {
   background-color: var(--primary-yellow);
   transform: scaleX(0);
   transform-origin: left;
-  animation: expandLine 1s ease-out 0.8s forwards;
+  transition: transform 1s ease-out 0.8s;
+}
+.internship-title.is-visible::before {
+  transform: scaleX(1);
 }
 
 /* --- Main Internship Card --- */
@@ -67,19 +75,18 @@ body {
   transform: translateY(30px);
   transition: transform 1s cubic-bezier(0.25, 1, 0.5, 1), opacity 1s cubic-bezier(0.25, 1, 0.5, 1);
 }
-
 .internship-card.is-visible {
   opacity: 1;
   transform: translateY(0);
 }
 
+/* --- Company Title and Duration --- */
 .company-title {
   font-size: 28px;
   font-weight: 600;
   color: var(--text-dark);
   margin-bottom: 5px;
 }
-
 .internship-duration {
   font-size: 16px;
   font-weight: 500;
@@ -96,14 +103,12 @@ body {
   margin-top: 30px;
   margin-bottom: 15px;
 }
-
 .key-responsibilities ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
-
-.key-responsibilities li {
+#responsibilities-list li {
   font-size: 16px;
   color: var(--text-light);
   margin-bottom: 10px;
@@ -111,11 +116,18 @@ body {
   padding-left: 20px;
   opacity: 0;
   transform: translateX(-20px);
-  animation: slideInList 0.8s ease-out forwards;
+  transition: opacity 0.8s, transform 0.8s;
+  transition-delay: var(--li-delay, 0s);
 }
-
-/* Note: The pseudo-element requires Font Awesome library in your project */
-.key-responsibilities li::before {
+#responsibilities-list li.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+#responsibilities-list li:nth-child(1) { transition-delay: 0.2s; }
+#responsibilities-list li:nth-child(2) { transition-delay: 0.4s; }
+#responsibilities-list li:nth-child(3) { transition-delay: 0.6s; }
+#responsibilities-list li:nth-child(4) { transition-delay: 0.8s; }
+#responsibilities-list li::before {
   content: '\f00c';
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
@@ -126,11 +138,6 @@ body {
   font-size: 12px;
 }
 
-.key-responsibilities li:nth-child(1) { animation-delay: 0.2s; }
-.key-responsibilities li:nth-child(2) { animation-delay: 0.4s; }
-.key-responsibilities li:nth-child(3) { animation-delay: 0.6s; }
-.key-responsibilities li:nth-child(4) { animation-delay: 0.8s; }
-
 /* --- Technologies Used Section --- */
 .technologies-used h4 {
   font-size: 20px;
@@ -139,13 +146,11 @@ body {
   margin-top: 30px;
   margin-bottom: 15px;
 }
-
 .tech-grid {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
 }
-
 .tech-item {
   background-color: var(--secondary-yellow);
   color: var(--text-dark);
@@ -155,19 +160,19 @@ body {
   font-weight: 500;
   opacity: 0;
   transform: scale(0.9);
-  animation: scaleIn 0.5s ease-out forwards;
+  transition: opacity 0.5s, transform 0.5s;
+  transition-delay: var(--item-delay, 0s);
 }
+.tech-item.is-visible {
+  opacity: 1;
+  transform: scale(1);
+}
+.tech-item:nth-child(1) { transition-delay: 0.2s; }
+.tech-item:nth-child(2) { transition-delay: 0.3s; }
+.tech-item:nth-child(3) { transition-delay: 0.4s; }
+.tech-item:nth-child(4) { transition-delay: 0.5s; }
 
-.tech-item:nth-child(1) { animation-delay: 0.2s; }
-.tech-item:nth-child(2) { animation-delay: 0.3s; }
-.tech-item:nth-child(3) { animation-delay: 0.4s; }
-.tech-item:nth-child(4) { animation-delay: 0.5s; }
-.tech-item:nth-child(5) { animation-delay: 0.6s; }
-.tech-item:nth-child(6) { animation-delay: 0.7s; }
-.tech-item:nth-child(7) { animation-delay: 0.8s; }
-.tech-item:nth-child(8) { animation-delay: 0.9s; }
-
-/* --- Summary --- */
+/* --- Internship Summary --- */
 .internship-summary {
   background-color: var(--secondary-yellow);
   padding: 40px;
@@ -179,37 +184,14 @@ body {
   transition: transform 1s ease-out, opacity 1s ease-out;
   max-width: 1100px;
 }
-
 .internship-summary.is-visible {
   opacity: 1;
   transform: translateY(0);
 }
-
 .internship-summary p {
   font-size: 18px;
   color: var(--text-dark);
   font-weight: 500;
-}
-
-/* --- General Animations (moved here for encapsulation) --- */
-@keyframes slideInLeft {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes expandLine {
-  from { transform: scaleX(0); }
-  to { transform: scaleX(1); }
-}
-
-@keyframes slideInList {
-  from { transform: translateX(-20px); opacity: 0; }
-  to { transform: translateX(0); opacity: 1; }
-}
-
-@keyframes scaleIn {
-  from { transform: scale(0.9); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
 }
 
 /* --- Responsive Design --- */
@@ -228,7 +210,7 @@ body {
   .key-responsibilities h4, .technologies-used h4 {
     font-size: 18px;
   }
-  .key-responsibilities li {
+  #responsibilities-list li {
     font-size: 14px;
   }
   .tech-item {

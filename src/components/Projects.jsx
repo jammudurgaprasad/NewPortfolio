@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import "../css/Projects.css";
-// Import project images
 import DPSKitchen from "../Certificates&Projects/dpskitchen.png";
 import BillGenerator from "../Certificates&Projects/BillGenerator.png";
 import RockPaperScissor from "../Certificates&Projects/rockpaperscissor.png";
@@ -19,7 +18,12 @@ const Projects = () => {
       rootMargin: "0px",
       threshold: 0.1,
     };
-    const animatedElements = document.querySelectorAll(".card-wrapper");
+
+    // Animate the title and each card-wrapper
+    const animatedElements = document.querySelectorAll(
+      ".projects-title, .card-wrapper"
+    );
+
     const observer = new IntersectionObserver((entries, observerInstance) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -28,7 +32,9 @@ const Projects = () => {
         }
       });
     }, observerOptions);
+
     animatedElements.forEach((el) => observer.observe(el));
+
     return () => observer.disconnect();
   }, []);
 
@@ -37,7 +43,6 @@ const Projects = () => {
       <main className="projects-section">
         <h1 className="projects-title">Projects & Work Samples</h1>
         <div className="projects-grid">
-          {/* Online food ordering system */}
           <div className="card-wrapper">
             <div className="card">
               <div className="slide slide1">
@@ -51,18 +56,18 @@ const Projects = () => {
                     <strong>Technologies:</strong> HTML, CSS, JS, MySQL, Django
                   </p>
                   <div className="onlinelinks">
-                    <a
-                      href="https://github.com/jammudurgaprasad/project4"
-                      target="_blank"
-                      rel="noopener noreferrer"
+                    <a 
+                      href="https://github.com/jammudurgaprasad/project4" 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
                       aria-label="GitHub Link"
                     >
                       <i className="fab fa-github"></i>
                     </a>
-                    <a
-                      href="https://jammudurgaprasad.pythonanywhere.com/"
-                      target="_blank"
-                      rel="noopener noreferrer"
+                    <a 
+                      href="https://jammudurgaprasad.pythonanywhere.com/" 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
                       aria-label="Live Demo Link"
                     >
                       <i className="fas fa-external-link-alt"></i>
@@ -72,7 +77,6 @@ const Projects = () => {
               </div>
             </div>
           </div>
-          {/* Bill Generator */}
           <div className="card-wrapper">
             <div className="card">
               <div className="slide slide1">
@@ -86,18 +90,18 @@ const Projects = () => {
                     <strong>Technologies:</strong> HTML, CSS, JS
                   </p>
                   <div className="onlinelinks">
-                    <a
-                      href="https://github.com/jammudurgaprasad/projects/blob/main/bill.html"
-                      target="_blank"
-                      rel="noopener noreferrer"
+                    <a 
+                      href="https://github.com/jammudurgaprasad/projects/blob/main/bill.html" 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
                       aria-label="GitHub Link"
                     >
                       <i className="fab fa-github"></i>
                     </a>
-                    <a
-                      href="https://jdp62.netlify.app/bill.html"
-                      target="_blank"
-                      rel="noopener noreferrer"
+                    <a 
+                      href="https://jdp62.netlify.app/bill.html" 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
                       aria-label="Live Demo Link"
                     >
                       <i className="fas fa-external-link-alt"></i>
@@ -107,7 +111,6 @@ const Projects = () => {
               </div>
             </div>
           </div>
-          {/* ROCK-PAPER-SCISSOR */}
           <div className="card-wrapper">
             <div className="card">
               <div className="slide slide1">
@@ -121,10 +124,10 @@ const Projects = () => {
                     <strong>Technologies:</strong> HTML, CSS, JS
                   </p>
                   <div className="onlinelinks">
-                    <a
-                      href="https://dp-rock-paper-scissor.netlify.app/"
-                      target="_blank"
-                      rel="noopener noreferrer"
+                    <a 
+                      href="https://dp-rock-paper-scissor.netlify.app/" 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
                       aria-label="Live Demo Link"
                     >
                       <i className="fas fa-external-link-alt"></i>
@@ -134,7 +137,6 @@ const Projects = () => {
               </div>
             </div>
           </div>
-          {/* Calculator */}
           <div className="card-wrapper">
             <div className="card">
               <div className="slide slide1">
@@ -148,18 +150,18 @@ const Projects = () => {
                     <strong>Technologies:</strong> HTML, CSS, JS
                   </p>
                   <div className="onlinelinks">
-                    <a
-                      href="https://github.com/jammudurgaprasad/projects/blob/main/calculator.html"
-                      target="_blank"
-                      rel="noopener noreferrer"
+                    <a 
+                      href="https://github.com/jammudurgaprasad/projects/blob/main/calculator.html" 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
                       aria-label="GitHub Link"
                     >
                       <i className="fab fa-github"></i>
                     </a>
-                    <a
-                      href="https://jdp62.netlify.app/calculator.html"
-                      target="_blank"
-                      rel="noopener noreferrer"
+                    <a 
+                      href="https://jdp62.netlify.app/calculator.html" 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
                       aria-label="Live Demo Link"
                     >
                       <i className="fas fa-external-link-alt"></i>
@@ -169,7 +171,6 @@ const Projects = () => {
               </div>
             </div>
           </div>
-          {/* Cultural Fest */}
           <div className="card-wrapper">
             <div className="card">
               <div className="slide slide1">
@@ -183,10 +184,10 @@ const Projects = () => {
                     <strong>Technologies:</strong> HTML, CSS, JS
                   </p>
                   <div className="onlinelinks">
-                    <a
-                      href="https://github.com/jammudurgaprasad/college_cultural_fest_website"
-                      target="_blank"
-                      rel="noopener noreferrer"
+                    <a 
+                      href="https://github.com/jammudurgaprasad/college_cultural_fest_website" 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
                       aria-label="GitHub Link"
                     >
                       <i className="fab fa-github"></i>
@@ -196,7 +197,6 @@ const Projects = () => {
               </div>
             </div>
           </div>
-          {/* To-Do App */}
           <div className="card-wrapper">
             <div className="card">
               <div className="slide slide1">
@@ -210,18 +210,18 @@ const Projects = () => {
                     <strong>Technologies:</strong> React Js, Node Js, MongoDB, CSS
                   </p>
                   <div className="onlinelinks">
-                    <a
-                      href="https://github.com/jammudurgaprasad/Full-Stack-ToDo-App"
-                      target="_blank"
-                      rel="noopener noreferrer"
+                    <a 
+                      href="https://github.com/jammudurgaprasad/Full-Stack-ToDo-App" 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
                       aria-label="GitHub Link"
                     >
                       <i className="fab fa-github"></i>
                     </a>
-                    <a
-                      href="https://dptodoapp.netlify.app/"
-                      target="_blank"
-                      rel="noopener noreferrer"
+                    <a 
+                      href="https://dptodoapp.netlify.app/" 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
                       aria-label="Live Demo Link"
                     >
                       <i className="fas fa-external-link-alt"></i>
@@ -231,7 +231,6 @@ const Projects = () => {
               </div>
             </div>
           </div>
-          {/* Weather App */}
           <div className="card-wrapper">
             <div className="card">
               <div className="slide slide1">
@@ -245,18 +244,18 @@ const Projects = () => {
                     <strong>Technologies:</strong> React Js, CSS
                   </p>
                   <div className="onlinelinks">
-                    <a
-                      href="https://github.com/jammudurgaprasad/Weather_App"
-                      target="_blank"
-                      rel="noopener noreferrer"
+                    <a 
+                      href="https://github.com/jammudurgaprasad/Weather_App" 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
                       aria-label="GitHub Link"
                     >
                       <i className="fab fa-github"></i>
                     </a>
-                    <a
-                      href="https://dpsweatherapp.netlify.app/"
-                      target="_blank"
-                      rel="noopener noreferrer"
+                    <a 
+                      href="https://dpsweatherapp.netlify.app/" 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
                       aria-label="Live Demo Link"
                     >
                       <i className="fas fa-external-link-alt"></i>
@@ -266,7 +265,6 @@ const Projects = () => {
               </div>
             </div>
           </div>
-          {/* Ecommerce */}
           <div className="card-wrapper">
             <div className="card">
               <div className="slide slide1">
@@ -280,10 +278,10 @@ const Projects = () => {
                     <strong>Technologies:</strong> React, Node, Express, MongoDB
                   </p>
                   <div className="onlinelinks">
-                    <a
-                      href="https://github.com/jammudurgaprasad/E-commerse"
-                      target="_blank"
-                      rel="noopener noreferrer"
+                    <a 
+                      href="https://github.com/jammudurgaprasad/E-commerse" 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
                       aria-label="GitHub Link"
                     >
                       <i className="fab fa-github"></i>
@@ -293,7 +291,6 @@ const Projects = () => {
               </div>
             </div>
           </div>
-          {/* Object Detection */}
           <div className="card-wrapper">
             <div className="card">
               <div className="slide slide1">
@@ -307,10 +304,10 @@ const Projects = () => {
                     <strong>Technologies:</strong> React, TensorFlow, Django, OpenCV
                   </p>
                   <div className="onlinelinks">
-                    <a
-                      href="https://github.com/jammudurgaprasad/Object_Detection"
-                      target="_blank"
-                      rel="noopener noreferrer"
+                    <a 
+                      href="https://github.com/jammudurgaprasad/Object_Detection" 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
                       aria-label="GitHub Link"
                     >
                       <i className="fab fa-github"></i>
@@ -320,7 +317,6 @@ const Projects = () => {
               </div>
             </div>
           </div>
-          {/* College Predictor */}
           <div className="card-wrapper">
             <div className="card">
               <div className="slide slide1">
@@ -334,18 +330,18 @@ const Projects = () => {
                     <strong>Technologies:</strong> React, REST API, Pandas, Django
                   </p>
                   <div className="onlinelinks">
-                    <a
-                      href="https://github.com/jammudurgaprasad/Eapcet_College_Predictor"
-                      target="_blank"
-                      rel="noopener noreferrer"
+                    <a 
+                      href="https://github.com/jammudurgaprasad/Eapcet_College_Predictor" 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
                       aria-label="GitHub Link"
                     >
                       <i className="fab fa-github"></i>
                     </a>
-                    <a
-                      href="https://futuredesk.netlify.app/"
-                      target="_blank"
-                      rel="noopener noreferrer"
+                    <a 
+                      href="https://futuredesk.netlify.app/" 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
                       aria-label="Live Demo Link"
                     >
                       <i className="fas fa-external-link-alt"></i>

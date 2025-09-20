@@ -208,3 +208,50 @@ nav a:hover {
 .menu-toggle, .menu-bars, .icon-link {
   outline: none;
 }
+
+
+
+/* nav a {
+  text-decoration: none;
+  color: var(--text-light);
+  font-weight: 500;
+  font-size: 16px;
+  transition: color 0.4s ease, border-bottom 0.4s ease;
+}
+
+nav a.active {
+  color: var(--primary-yellow);
+  font-weight: 700;
+  border-bottom: 2px solid var(--primary-yellow);
+  padding-bottom: 2px;
+} */
+
+nav {
+  position: relative;
+  margin-right: 150px;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+  position: relative;
+}
+
+/* Dynamic underline bar */
+.nav-underline {
+  position: absolute;
+  bottom: -4px; /* Just below text */
+  left: 0;
+  height: 2px;
+  background-color: var(--primary-yellow);
+  border-radius: 2px;
+  transition: transform 0.4s cubic-bezier(0.39, 0.58, 0.57, 1),
+              width 0.4s cubic-bezier(0.39, 0.58, 0.57, 1);
+  will-change: transform, width;
+  pointer-events: none;
+  width: 0;
+}

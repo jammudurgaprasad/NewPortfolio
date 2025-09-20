@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import emailjs from "emailjs-com";
 import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope } from "react-icons/fa";
-import "../css/Contact.css"; // External CSS file
+import "../css/Contact.css";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -36,10 +36,10 @@ const Contact = () => {
       });
   };
 
-  // Scroll fade-in animation
   useEffect(() => {
-    const options = { threshold: 0.1 };
-    const elements = document.querySelectorAll(".fade-on-scroll");
+    const observerOptions = { threshold: 0.1 };
+
+    const elements = document.querySelectorAll(".fade-on-scroll, .contact-heading");
 
     const observer = new IntersectionObserver((entries, obs) => {
       entries.forEach((entry) => {
@@ -48,7 +48,7 @@ const Contact = () => {
           obs.unobserve(entry.target);
         }
       });
-    }, options);
+    }, observerOptions);
 
     elements.forEach((el) => observer.observe(el));
 
@@ -57,26 +57,23 @@ const Contact = () => {
 
   return (
     <div className="container" id="contact">
-      <main className="contact-heading fade-on-scroll">
+      <main className="contact-heading">
         <h1>Contact</h1>
         <p>Feel free to reach out for any inquiries or collaborations.</p>
       </main>
 
       <div className="contact-content">
-        {/* Contact Info Section */}
-        <div className="contact-info">
-          <div className="info-box fade-on-scroll">
+        {/* Contact Info */}
+        <div className="contact-info fade-on-scroll">
+          <div className="info-box">
             <FaMapMarkerAlt className="icon" />
             <div>
               <h4>Address</h4>
-              <p>
-                RVR & JC NES MEN&apos;S Hostel, Chowdavaram, Guntur, Andhra
-                Pradesh 522019
-              </p>
+              <p>RVR & JC NES MEN&apos;S Hostel, Chowdavaram, Guntur, Andhra Pradesh 522019</p>
             </div>
           </div>
 
-          <div className="info-box fade-on-scroll">
+          <div className="info-box">
             <FaPhoneAlt className="icon" />
             <div>
               <h4>Call Us</h4>
@@ -84,7 +81,7 @@ const Contact = () => {
             </div>
           </div>
 
-          <div className="info-box fade-on-scroll">
+          <div className="info-box">
             <FaEnvelope className="icon" />
             <div>
               <h4>Email Us</h4>
@@ -92,7 +89,7 @@ const Contact = () => {
             </div>
           </div>
 
-          {/* Google Map Embed */}
+          {/* Google Map */}
           <iframe
             title="Google Map"
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3930.2797323707865!2d80.3232371!3d16.252169!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a4a76e36c936bb3%3A0x4cb41f876914915!2sRVR%20%26%20JC%20Boys%20Hostel!5e0!3m2!1sen!2sin!4v1613776074989!5m2!1sen!2sin"
@@ -105,9 +102,9 @@ const Contact = () => {
           ></iframe>
         </div>
 
-        {/* Contact Form Section */}
+        {/* Contact Form */}
         <div className="contact-form fade-on-scroll">
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} noValidate>
             <div className="input-group">
               <input
                 type="text"

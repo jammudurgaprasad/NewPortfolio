@@ -1,11 +1,14 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import "../css/Education.css";
 
 const Education = () => {
+  const sectionRef = useRef();
+
   useEffect(() => {
     const timeline = document.querySelector(".timeline");
     const timelineItems = document.querySelectorAll(".timeline-item");
     const summary = document.querySelector(".timeline-summary");
+    const title = document.querySelector(".education-title");
 
     const observerOptions = {
       root: null,
@@ -22,18 +25,18 @@ const Education = () => {
       });
     };
 
-    const timelineObserver = new IntersectionObserver(
+    const timelineObserver = new window.IntersectionObserver(
       observerCallback,
       observerOptions
     );
 
+    if (title) timelineObserver.observe(title);
     timelineItems.forEach((item) => {
       timelineObserver.observe(item);
     });
-
     if (summary) timelineObserver.observe(summary);
 
-    const timelineLineObserver = new IntersectionObserver(
+    const timelineLineObserver = new window.IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting && window.innerWidth > 768) {
@@ -50,7 +53,6 @@ const Education = () => {
 
     if (timeline) timelineLineObserver.observe(timeline);
 
-    // cleanup observers when component unmounts
     return () => {
       timelineObserver.disconnect();
       timelineLineObserver.disconnect();
@@ -58,7 +60,7 @@ const Education = () => {
   }, []);
 
   return (
-    <div className="container" id="education">
+    <div className="container" id="education" ref={sectionRef}>
       <main className="education-section">
         <h1 className="education-title">Education</h1>
         <div className="timeline">

@@ -1,4 +1,3 @@
-/* --- Variables --- */
 :root {
   --primary-yellow: #ffc107;
   --secondary-yellow: #fff3e0;
@@ -7,7 +6,6 @@
   --bg-white: #f5f5f5;
 }
 
-/* --- Base & Layout --- */
 body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
@@ -22,7 +20,7 @@ body {
   padding: 20px;
 }
 
-/* --- Projects Section --- */
+/* Projects Section Layout */
 .projects-section {
   display: flex;
   flex-direction: column;
@@ -30,7 +28,7 @@ body {
   margin-top: 60px;
 }
 
-/* --- Title Animation --- */
+/* Title scroll animation */
 .projects-title {
   font-size: 48px;
   font-weight: 700;
@@ -38,9 +36,15 @@ body {
   margin-bottom: 20px;
   position: relative;
   display: inline-block;
-  animation: slideInLeft 0.8s ease-out;
-}
 
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+.projects-title.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
 .projects-title::before {
   content: '';
   position: absolute;
@@ -51,10 +55,13 @@ body {
   background-color: var(--primary-yellow);
   transform: scaleX(0);
   transform-origin: left;
-  animation: expandLine 1s ease-out 0.8s forwards;
+  transition: transform 1s ease-out 0.8s;
+}
+.projects-title.is-visible::before {
+  transform: scaleX(1);
 }
 
-/* --- Project Grid Layout --- */
+/* Project cards grid */
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -63,7 +70,7 @@ body {
   margin-top: 40px;
 }
 
-/* --- Card Hover Effect --- */
+/* Card wrapper scroll reveal */
 .card-wrapper {
   position: relative;
   width: 100%;
@@ -71,6 +78,7 @@ body {
   height: 300px;
   margin: auto;
   perspective: 1000px;
+
   opacity: 0;
   transform: translateY(20px);
   transition: transform 1s ease-out, opacity 1s ease-out;
@@ -128,17 +136,14 @@ body {
   object-fit: cover;
 }
 
-/* Renamed from .content to .details */
 .card .slide2 .details {
-  /* Using Flexbox to center everything inside */
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center; 
-  width: 100%; /* Ensure the container takes up full width for proper centering */
+  text-align: center;
+  width: 100%;
 }
 
-/* Renamed from .content h3 to .details h3 */
 .card .slide2 .details h3 {
   font-size: 24px;
   font-weight: 600;
@@ -146,15 +151,13 @@ body {
   margin: 0 0 5px 0;
 }
 
-/* Renamed from .content p to .details p */
 .card .slide2 .details p {
   font-size: 14px;
   color: var(--text-light);
   margin: 0;
-  text-align: center; /* This is what ensures centered text on both mobile and desktop */
+  text-align: center;
 }
 
-/* Renamed from .content .onlinelinks to .details .onlinelinks */
 .card .slide2 .details .onlinelinks {
   display: flex;
   justify-content: center;
@@ -181,18 +184,7 @@ body {
   box-shadow: 0 3px 8px rgba(255, 193, 7, 0.4);
 }
 
-/* --- General Animations --- */
-@keyframes slideInLeft {
-  from { transform: translateX(-50px); opacity: 0; }
-  to { transform: translateX(0); opacity: 1; }
-}
-
-@keyframes expandLine {
-  from { transform: scaleX(0); }
-  to { transform: scaleX(1); }
-}
-
-/* --- Responsive Design --- */
+/* Responsive */
 @media (max-width: 600px) {
   .projects-title {
     font-size: 32px;

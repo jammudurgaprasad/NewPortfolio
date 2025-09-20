@@ -6,14 +6,19 @@ const Internship = () => {
     const observerOptions = {
       root: null,
       rootMargin: "0px",
-      threshold: 0.1,
+      threshold: 0.15,
     };
 
     const sectionsToAnimate = [
+      document.querySelector(".internship-title"),
       document.querySelector(".internship-card"),
       document.querySelector(".internship-summary"),
     ];
 
+    const techItems = document.querySelectorAll(".tech-item");
+    const respItems = document.querySelectorAll("#responsibilities-list li");
+
+    // Animate card, title, summary
     const observer = new IntersectionObserver((entries, observerInstance) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -27,7 +32,35 @@ const Internship = () => {
       if (section) observer.observe(section);
     });
 
-    return () => observer.disconnect();
+    // Animate tech items
+    const techObserver = new IntersectionObserver((entries, obs) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { ...observerOptions, threshold: 0.05 });
+
+    techItems.forEach((item) => techObserver.observe(item));
+
+    // Animate responsibility items
+    const respObserver = new IntersectionObserver((entries, obs2) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          obs2.unobserve(entry.target);
+        }
+      });
+    }, { ...observerOptions, threshold: 0.05 });
+
+    respItems.forEach((item) => respObserver.observe(item));
+
+    return () => {
+      observer.disconnect();
+      techObserver.disconnect();
+      respObserver.disconnect();
+    };
   }, []);
 
   return (
@@ -46,7 +79,6 @@ const Internship = () => {
             provided hands-on experience in integrating machine learning models
             within full-stack applications.
           </p>
-
           <div className="key-responsibilities">
             <h4>Key Responsibilities:</h4>
             <ul id="responsibilities-list">
@@ -68,7 +100,6 @@ const Internship = () => {
               </li>
             </ul>
           </div>
-
           <div className="technologies-used">
             <h4>Technologies Used:</h4>
             <div className="tech-grid">
@@ -81,7 +112,6 @@ const Internship = () => {
             </div>
           </div>
         </div>
-
         <div className="internship-summary">
           <p>
             This internship was a transformative learning experience that
